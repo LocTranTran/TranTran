@@ -1,7 +1,9 @@
 :root{
     --main-color:rgb(0, 217, 255);
-    --white-color:#fff;
-    --black-color:black;
+    --extra-color:rgb(0, 217, 255);
+    --white-color:#FEFEFE;
+    --black-color:#363753;
+    --gray-color:#DFE3EE;
 }
 
 /* form login  */
@@ -25,10 +27,10 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-    /* display: none; */
+    display: none;
 }
 .container {
-    background-color: rgb(255, 255, 255);    
+    background-color: var(--gray-color);    
     color:var(--main-color);
     width: 700px;
     height: 600px;
@@ -38,7 +40,7 @@
     transform: translate(-50%);
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 0px 2px 1px black;
+    box-shadow: 0 0px 2px 1px var(--black-color);
     /* box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgba(112, 28, 28, 0.25), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e; */
 }
 
@@ -104,12 +106,7 @@
 }
 .title .swtich:hover {
     color:var(--main-color) ;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1)
-}
-.s{
-
-    margin-bottom: 50px;
-
+    text-shadow: 1px 1px 2px var(--black-color);
 }
 form .form_control {
     width: 100%;
@@ -132,10 +129,10 @@ form .form_control .label {
 form .form_control .input {
     width: 96%;
     height: 40px;
-    background-color: white;
+    background-color: var(--white-color);
     border: none;
     outline: none;
-    color: #000000;
+    color: var(--white-color);
     padding: 0.5rem;
     font-size: 1.2rem;
     border-radius: 5px;
@@ -167,7 +164,7 @@ form button {
     background-color: var(--main-color);
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--white-color);
     padding: 0.5rem;
     font-size: 1.5rem;
     border-radius: 5px;
@@ -203,9 +200,9 @@ form button:active {
     transform: translateX(50%);
 }
 #cart {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--white-color);
     color: #000000;
-    box-shadow: 0 0 3px 2px gray;
+    box-shadow: 0 0 3px 2px var(--gray-color);
     border-radius: 5px;
 }
 
@@ -225,6 +222,7 @@ form button:active {
     top:14px;
     z-index: 4;
 }
+
 .cart__wrapper {
     margin-left: 10px;
     display: flex;
@@ -238,7 +236,7 @@ form button:active {
     gap: 30px;
     justify-content: space-around;
     align-items: center;
-    background-color: #e2dfdf;
+    background-color: var(--gray-color);
     width: 370px;
     height: 100px;
     padding-right: 20px;

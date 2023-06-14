@@ -35,7 +35,7 @@ h2 {
     font-weight: 700;
     font-size: 48px;
     line-height: 58px;  
-    color: #112B3C;
+    color: var(--black-color);
     flex: none;
     order: 1;
     flex-grow: 0;    
@@ -64,6 +64,7 @@ h6 {
     color: #112B3C;
 }
 h7 {
+    color: rgb(255, 1, 1) !important;
 }
 #main {
     /*căn giữa màn hình*/
@@ -74,7 +75,6 @@ h7 {
     transform: translate(-50%,0%);
     width: 1440px;
     height: 4286px;
-    border: 1px solid var(--main-color);
 }
 /* HEADER */
 .heading {
@@ -164,7 +164,6 @@ h7 {
     height: 579px;
     left: 135px;
     top: 184px;
-    border: 1px solid var(--main-color);
 
 }
 .main__home--content {
@@ -179,7 +178,6 @@ h7 {
     height: 433px;
     left: 130px;
     top: 73px;
-    border:1px solid var(--main-color);    
 }
 .main__home--content p {
     width: 469px;
@@ -194,10 +192,8 @@ h7 {
 
     position: absolute;
     top: 201px;
-    border:1px solid var(--main-color);   
 }
 .home--content-bg {
-    border:1px solid var(--main-color);   
     position: absolute;
     width: 469px;
     height: 80px;
@@ -212,7 +208,6 @@ h7 {
     width: 445px;
     height: 579px;
     left: 700px;
-    border:1px solid var(--main-color);   
 }
 .main__home--imgs img:nth-child(1) {
     width: 365px;
@@ -453,7 +448,7 @@ h7 {
 .main__services--card img {
     width: 370px;
     height: 300px;
-
+    object-fit: cover;
     position: absolute;
     left: 0%;
     right: 0%;
@@ -500,10 +495,8 @@ h7 {
     height: 636px;
     left: 135px;
     top: 3206px;
-    border:1px solid gray;
 }
 .main__contact--content {
-    border:1px solid var(--main-color);
     position: absolute;
     width: 1170px;
     height: 330px;
@@ -514,7 +507,6 @@ h7 {
     gap: 50px;
 }
 .main__contact--text {
-    border:1px solid var(--main-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -563,7 +555,6 @@ h7 {
 
     }
 .contact--content-card {
-    border:1px solid var(--main-color);
     width: 255px;
     height:285px;
     background: #FFFFFF;
@@ -571,18 +562,17 @@ h7 {
 }
 .contact--content-card img {
     padding: 8px 9px 0 9px ;
-    background: url(.jpg);
+    width: 235px;
+    height: 190px;
     border-radius: 16px;
 }
 .contact--content-text {
-    border:1px solid var(--main-color);
     position: absolute;
     left: 3.94%;
     right: 45.67%;
     top: 72.76%;
     bottom: 7.24%;}
 .contact--content-card-info {
-    border:1px solid var(--main-color);
 }
 
 /* /contact  */

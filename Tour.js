@@ -26,9 +26,15 @@ closeButton1.addEventListener('click', function() {
   }
 });
 
+registerButton.addEventListener("click", function() {
+  form.classList.add("active");
+  setTimeout(function() {
+      form.classList.add("show");
+  }, 0);
+});
 // Ẩn hiện thị mật khẩu 
+const password = document.querySelector('.input-password');
 function showPassword() {
-  const password = document.querySelector('.input-password');
   if (password.type === "password") {
     password.type = 'text';
   }else {
@@ -57,7 +63,7 @@ async function servicesLoadImages() {
           <h6>Fall in love among the winding streets and snow-covered</h6>
           <p>Prague, Czechia</p>
           <div class="services--content-card-info">
-            <h7>$250</h7>
+            <h7>${services.money}0 VND</h7>
             <c>7 days tour</c>
             <i class="fa-solid fa-cart-plus fa-xl" style="color:const(--main-color)"></i>
           </div>
@@ -79,25 +85,22 @@ async function servicesLoadImages() {
     services_currentSlide = Math.max(services_currentSlide - 1, 0);
     servicesSlideTo(services_currentSlide);
   });
+  // Chuyển đổi giữa các hình ảnh
+  // function servicesSlideTo(slideIndex) {
+  //   const servicesCards = document.querySelectorAll('.main__services--card');
+  //   for (let i = 0; i < servicesCards.length; i++) {
+  //     servicesCards[i].style.display = "none";
+  //   }
+  //   servicesCards[slideIndex].style.display = "block";
+  // }
+  //tải danh sách từ API mock và hiển thị
+    function servicesSlideTo(servicesSlideIndex) {
+      const servicesSlideWidth = document.querySelector('.main__services--card').offsetWidth;
+      const servicestranslateX = -servicesSlideWidth * servicesSlideIndex;
+      servicesCards.style.transform = `translateX(${servicestranslateX}px)`;
+    }
+    
 }
-
-// Chuyển đổi giữa các hình ảnh
-function servicesSlideTo(slideIndex) {
-  const servicesCards = document.querySelectorAll('.main__services--card');
-  for (let i = 0; i < servicesCards.length; i++) {
-    servicesCards[i].style.display = "none";
-  }
-  servicesCards[slideIndex].style.display = "block";
-}
-
-//tải danh sách từ API mock và hiển thị
-servicesLoadImages();
-  function servicesSlideTo(servicesSlideIndex) {
-    const servicesSlideWidth = document.querySelector('.main__services--card').offsetWidth;
-    const servicestranslateX = -servicesSlideWidth * servicesSlideIndex;
-    servicesCards.style.transform = `translateX(${servicestranslateX}px)`;
-  }
-  
   servicesLoadImages();
 
  // Lấy thông tin phần tử HTML trên 
@@ -114,9 +117,9 @@ async function priceLoadImages() {
       const priceItem = document.createElement('div');
       priceItem.innerHTML = `
         <div class="main__price--card">
-          <img class="main__price--card-img" src="${price.img}" alt="">
+          <img class="main__price--card-img" src="${price.avatar}" alt="">
           <div class="price--card--title">
-            <h4>${price.id}</h4>
+            <h4>${price.job}</h4>
           </div>
           <p>Customer testimonials are more effective than paid marketing copy as they take the spotlight away from the seller to shine it on the customers.</p>
         </div>
