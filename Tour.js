@@ -27,7 +27,7 @@ closeButton1.addEventListener('click', function() {
   modalOverlay1.style.display = 'none';
 });
 
-// Hiển thị mật khẩu khi click vào checkbox hiển thị mật khẩu
+// Hiển thị mật khẩu khi click 
 function showPassword() {
   if (password.type === "password") {
     password.type = 'text';
@@ -37,69 +37,64 @@ function showPassword() {
 }
 
 
-
-
-const cart = document.getElementById("cart");
 // Lấy thông tin phần tử HTML trên trang web
-const servicesCards = document.querySelector('.main__services--cards');
-const servicesBtnP = document.getElementById('servicesBtnP');
-const servicesBtnN = document.getElementById('servicesBtnN');
-let services_currentSlide = 0;
+const servicesCards = document.querySelectorAll('.main__services--card');
+const servicesImg = document.querySelectorAll('.services--card-img');
+const servicesNamectry = document.querySelectorAll('.services--card-namecotry');
+const servicesNamecity = document.querySelectorAll('.services--card-namecity');
+const servicesMoney = document.querySelectorAll('.services--card-money');
+const servicesTime = document.querySelectorAll('.services--card-time');
 
-// Tải danh sách hình ảnh từ API mock và hiển thị
 async function servicesLoadImages() {
-  const servicesPesponse = await fetch('https://64818aa329fa1c5c503191e0.mockapi.io/ass');
-  const servicesResult = await servicesPesponse.json();
-  servicesCards.innerHTML = "";
-  servicesResult.forEach((services, index) => {
-    const servicesItem = document.createElement('div');
-    servicesItem.innerHTML = `
-      <div class="main__services--card">
-        <img src="${services.img}" alt="">
-        <div class="services--content-text">
-          <h6>${services.namecity}</h6>
-          <p>Prague, Czechia</p>
-          <div class="services--content-card-info">
-            <h7>${services.money}0 VND</h7>
-            <c>7 days tour</c>
-            <button class="buy">buy</button>
-          </div>
-        </div>
-      </div>
-    `;
-    servicesCards.appendChild(servicesItem);
-  });
-  servicesSlideTo(services_currentSlide);
+  try {
+    const servicesResponse = await fetch('https://64818aa329fa1c5c503191e0.mockapi.io/addres');
+    const servicesData = await servicesResponse.json();
 
-  // Những nút chuyển đổi và chuyển đổi giữa các card
-  servicesBtnN.addEventListener('click', () => {
-    const servicesCard = document.querySelectorAll('.main__services--card').length;
-    services_currentSlide = Math.min(services_currentSlide + 1, servicesCard - 1);
-    servicesSlideTo(services_currentSlide);
-  });
-
-  servicesBtnP.addEventListener('click', () => {
-    services_currentSlide = Math.max(services_currentSlide - 1, 0);
-    servicesSlideTo(services_currentSlide);
-  });
-
-  // Chuyển đổi giữa các hình ảnh
-  function servicesSlideTo(slideIndex) {
-    const servicesCards = document.querySelectorAll('.main__services--card');
-    for (let i = 0; i < servicesCards.length; i++) {
-      servicesCards[i].style.display = "none";
+    if (Array.isArray(servicesData)) {
+      for (let i = 0; i < servicesCards.length; i++) {
+        const service = servicesData[i];
+        servicesImg[i].src = service.img;
+        servicesImg[i].alt = service.alt;
+        servicesNamectry[i].textContent = service.namecotry;
+        servicesNamecity[i].textContent = service.namecity;
+        servicesTime[i].textContent = service.time;
+        servicesMoney[i].textContent = service.money;
+      }
+    } else {
+      console.error('Invalid data type returned from API.');
     }
-    servicesCards[slideIndex].style.display = "block";
-  }
-   //tải danh sách từ API mock và hiển thị
-  function servicesSlideTo(servicesSlideIndex) {
-    const servicesSlideWidth = document.querySelector('.main__services--card').offsetWidth;
-    const servicestranslateX = -servicesSlideWidth * servicesSlideIndex;
-    servicesCards.style.transform = `translateX(${servicestranslateX}px)`;
+  } catch (error) {
+    console.error(error);
   }
 }
 
 servicesLoadImages();
+
+const servicesBtnP = document.getElementById('servicesBtnP');
+const servicesBtnN = document.getElementById('servicesBtnN');
+let services_currentSlide = 0;
+servicesSlideToWithTransform(services_currentSlide, servicesCards);
+
+// Những nút chuyển đổi và chuyển đổi giữa các card
+servicesBtnN.addEventListener('click', () => {
+  const servicesCard = servicesCards.length;
+  services_currentSlide = Math.min(services_currentSlide + 1, servicesCard - 1);
+  servicesSlideToWithTransform(services_currentSlide, servicesCards);
+});
+
+servicesBtnP.addEventListener('click', () => {
+  services_currentSlide = Math.max(services_currentSlide - 1, 0);
+  servicesSlideToWithTransform(services_currentSlide, servicesCards);
+});
+
+// Chuyển đổi giữa các hình ảnh
+function servicesSlideToWithTransform(servicesSlideIndex, servicesCards) {
+  const servicesSlideWidth = document.querySelector('.main__services--card').offsetWidth;
+  const servicestranslateX = -servicesSlideWidth * servicesSlideIndex;
+  for (let i = 0; i < servicesCards.length; i++) {
+    servicesCards[i].style.transform = `translateX(${servicestranslateX}px)`;
+  }
+}
 
 // Lấy thông tin phần tử HTML trên trang web
 const priceCards = document.querySelector('.main__price--cards');
@@ -186,10 +181,18 @@ function ready() {
 }
 // Xóa phần tử khi click vào nút "remove-cart"
 function removeCartItem(){
-  const buttonClick = event.target;
+  const buttonClick = event.target; 
   setTimeout(()=>{
       buttonClick.parentElement.remove();
   },200)
 }
 // Gọi hàm ready 
 ready();
+function haha(){
+  const buyButton = document.getElementById('buy');
+  buyButton.addEventListener('click', function() {
+   
+    alert('Button clicked!');
+  });
+
+}
