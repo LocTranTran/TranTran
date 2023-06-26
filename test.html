@@ -1,80 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-  <div class="card">
-    <img src="product1.jpg" alt="Product 1">
-    <h3>Product 1</h3>
-    <p>$10.00</p>
-    <button class="buy" data-name="Product 1" data-price="10.00" data-image="product1.jpg">Add to Cart</button>
-  </div>
   
-  <div class="card">
-    <img src="product2.jpg" alt="Product 2">
-    <h3>Product 2</h3>
-    <p>$20.00</p>
-    <button class="buy" data-name="Product 2" data-price="20.00" data-image="product2.jpg">Add to Cart</button>
-  </div>
-  
-  <div class="cart"></div>
 </body>
 <script>
- var cart = [];
+  var fullName = 'Lộc trần trân';
+var age = 18;  
+alert(fullName); 
+alert(age); 
 
-var buyButtons = document.querySelectorAll(".buy");
-for (var i = 0; i < buyButtons.length; i++) {
-  buyButtons[i].addEventListener("click", function(event) {
-    // Lấy thông tin sản phẩm từ thuộc tính data của nút "Thêm vào giỏ hàng"
-    var name = event.target.dataset.name;
-    var price = event.target.dataset.price;
-    var image = event.target.dataset.image;
-
-    // Tạo một đối tượng sản phẩm mới
-    var product = {
-      name: name,
-      price: price,
-      image: image
-    };
-
-    // Thêm sản phẩm vào giỏ hàng
-    cart.push(product);
-
-    // Cập nhật giỏ hàng
-    updateCart();
-  });
-}
-
-function updateCart() {
-  // Lấy phần tử HTML chứa giỏ hàng
-  var cartElement = document.querySelector(".cart");
-
-  // Xóa nội dung giỏ hàng hiện tại
-  cartElement.innerHTML = "";
-
-  // Thêm từng sản phẩm vào giỏ hàng hiện tại
-  for (var i = 0; i < cart.length; i++) {
-    // Tạo phần tử HTML chứa thông tin sản phẩm
-    var productElement = document.createElement("div");
-    productElement.classList.add("product");
-
-    var imageElement = document.createElement("img");
-    imageElement.src = cart[i].image;
-    productElement.appendChild(imageElement);
-
-    var nameElement = document.createElement("div");
-    nameElement.innerText = cart[i].name;
-    productElement.appendChild(nameElement);
-
-    var priceElement = document.createElement("div");
-    priceElement.innerText = cart[i].price;
-    productElement.appendChild(priceElement);
-
-    cartElement.appendChild(productElement);
-  }
-}
 </script>
 </html>
